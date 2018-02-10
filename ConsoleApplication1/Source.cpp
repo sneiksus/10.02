@@ -2,44 +2,37 @@
 #include<ctime>
 #include<string>
 using namespace std;
-void fill(int ar[], int size);
-void print(const  int ar[], int size);
-int sum2(int ar[], int size);
-int  max(int ar[], int size);
-int main()
-{
-	const int size = 6;
-	int arr[size];
-	int SUM=0, MAX=-1;
-	 fill(arr, size);
-	 print(arr, size);
-	 SUM = sum2(arr, size);
-	 MAX= max(arr, size);
-	 cout << "MAX = " << MAX << "\n SUM = " << SUM << endl << endl;
-}
-void fill(int ar[], int size)
+const int colls = 6;
+void fileM(long ar[][colls],int rows)
 {
 	srand(time(0));
-	for (int i = 0; i < size; ++i)
-		ar[i] = rand() % (22 - 2 + 1) + 2;
+	for (int r = 0; r < rows; r++)
+		for (int c = 0; c < colls; c++)
+			ar[r][c] = rand() % (81 - 11 + 1) + 11;
 }
-void print(const int ar[], int size)
+void printM(const long ar[][colls], int rows)
 {
-	for (int i = 0; i < size; i++)
-		cout << ar[i]<<" ";
+	for (int r = 0; r < rows; r++)
+	{
+		for (int c = 0; c < colls; c++)
+			cout << ar[r][c] << " ";
+		cout << endl;
+	}
 }
-int  sum2(int ar[], int size)
+long maxM(const long ar[][colls], int rows)
 {
-	int sum = 0;
-	for (int i = 0; i < size; i++)
-		sum += ar[i];
-	return sum;
-}
-int  max(int ar[], int size)
-{
-	int max = -1;
-	for (int i = 0; i < size; i++)
-		if (ar[i] >max)
-			max = ar[i];
+	unsigned short max  = 22;
+	for (int r = 0; r < rows; r++)
+		for (int c = 0; c < colls; c++)
+			if (ar[r][c] > max)
+				max = ar[r][c];
 	return max;
+}
+void main()
+{
+	const short rows = 4;
+	long arr[rows][colls];
+	fileM(arr, rows);
+	printM(arr, rows);
+	cout << "\n\nMAX = " << maxM(arr, rows) << "\n\n\n";
 }
